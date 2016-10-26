@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.oneplus.myradar.FriendDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/friend_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradient_friend_title">
+
+        <TextView
+            android:id="@+id/friend_detail_list_button"
+            android:layout_width="48dp"
+            android:layout_height="36dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/friend_edit_button_bg"
+            android:gravity="center"
+            android:text="@string/list"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/friend_detail_edit_button"
+            android:layout_width="48dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/friend_edit_button_bg"
+            android:gravity="center"
+            android:text="@string/edit"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <com.oneplus.widget.MyTextView2
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/friend"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/friend_detail_name_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/friend_detail_title"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/item_bg"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="48dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/friend_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <com.oneplus.widget.MyTextView4
+                android:id="@+id/friend_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/transparent"
+                android:gravity="start|center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/buttonGreen"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <com.oneplus.widget.MyEditText
+                android:id="@+id/friend_detail_edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/transparent"
+                android:gravity="start|center_vertical"
+                android:singleLine="true"
+                android:textColor="@color/buttonGreen"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/friend_detail_delete_button"
+            android:layout_width="48dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical">
+
+            <RelativeLayout
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/delete_circle">
+
+                <View
+                    android:layout_width="16dp"
+                    android:layout_height="4dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/white" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/friend_detail_foot_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradient_button_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <com.oneplus.widget.MyTextView2
+            android:id="@+id/friend_detail_radar_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/page_button"
+            android:gravity="center"
+            android:text="@string/radar"
+            android:textColor="@color/buttonGray"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView2
+            android:id="@+id/friend_detail_enemy_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/page_button"
+            android:gravity="center"
+            android:text="@string/enemy"
+            android:textColor="@color/buttonRed"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/friend_detail_foot_bar"
+        android:layout_below="@id/friend_detail_name_bar"
+        android:background="@drawable/friend_detail_bg"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/number"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_number_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/lat_lon"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_lat_lon_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/altitude"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_altitude_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/accuracy"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_accuracy_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/nearest_address"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_nearest_address_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/seconds_since_last_update"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_seconds_since_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView3
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:text="@string/Seconds_until_next_update"
+            android:textColor="@color/buttonGreen"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.oneplus.widget.MyTextView4
+            android:id="@+id/friend_seconds_until_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

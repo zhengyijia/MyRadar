@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">MyRadar</string>
+    <string name="enemy">ENEMIES</string>
+    <string name="friend">FRIENDS</string>
+    <string name="radar">RADAR</string>
+    <string name="delete_friend_title">DELETE FRIEND</string>
+    <string name="add_friend_title">ADD FRIEND</string>
+    <string name="delete_enemy_title">DELETE ENEMY</string>
+    <string name="add_enemy_title">ADD ENEMY</string>
+    <string name="name">NAME:</string>
+    <string name="number">NUMBER:</string>
+    <string name="lat_lon">LATITUDE/LONGITUDE:</string>
+    <string name="altitude">ALTITUDE:</string>
+    <string name="accuracy">ACCURACY:</string>
+    <string name="nearest_address">NEAREST ADDRESS:</string>
+    <string name="seconds_since_last_update">SECONDS SINCE LAST UPDATE:</string>
+    <string name="Seconds_until_next_update">SECONDS UNTIL NEXT UPDATE:</string>
+    <string name="lat_lon_value">%1$f/%2$f</string>
+    <string name="edit">Edit</string>
+    <string name="list">List</string>
+    <string name="add_friend_error">该好友已存在，请重新输入</string>
+    <string name="add_enemy_error">该敌人已存在，请重新输入</string>
+    <string name="empty_number_error">请输入手机号码</string>
+    <string name="sms_text">where are you?</string>
+    <string name="loading">LOADING</string>
+    <string name="none_result">NONE RESULT</string>
 </resources>

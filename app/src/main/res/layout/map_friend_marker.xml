@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.oneplus.widget.StrokeTextView3
+        android:id="@+id/friend_marker_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:textColor="@color/buttonGreen"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <com.oneplus.widget.MyTextView3
+        android:id="@+id/friend_marker_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+    
+    <ImageView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/friend_icon"
+        android:scaleType="fitCenter" />
+
+</LinearLayout>

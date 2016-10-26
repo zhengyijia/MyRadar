@@ -3,4 +3,26 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="dark">#000000</color>
+    <color name="titleDarkBegin">#1f1f1f</color>
+    <color name="titleDarkEnd">#050505</color>
+    <color name="titleGray">#434343</color>
+    <color name="buttonRed">#EC3239</color>
+    <color name="buttonGreen">#39B54A</color>
+    <color name="buttonGray">#848484</color>
+    <color name="metalGray">#363636</color>
+    <color name="metalLineGray1">#3F3F3F</color>
+    <color name="metalLineGray2">#6B6B6B</color>
+    <color name="metalLineGray3">#1D1D1D</color>
+    <color name="titleGreenBegin">#25C83C</color>
+    <color name="titleGreenEnd">#197C30</color>
+    <color name="titleRedBegin">#E5464C</color>
+    <color name="titleRedEnd">#E61E26</color>
+    <color name="buttonRedStart">#FA7C81</color>
+    <color name="buttonRedEnd">#E20F18</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="inputStroke">#383838</color>
+    <color name="inputSolid">#ACACAC</color>
+    <color name="transparent_dark">#88000000</color>
 </resources>
