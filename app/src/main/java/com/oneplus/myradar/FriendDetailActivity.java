@@ -67,64 +67,66 @@ public class FriendDetailActivity extends AppCompatActivity {
         FriendNameEdit.setText(friendItem.getName());
         MyTextView4 FriendNumber = (MyTextView4)findViewById(R.id.friend_number_content);
         FriendNumber.setText(friendItem.getPhoneNumber());
-        MyTextView4 FriendLatLon = (MyTextView4)findViewById(R.id.friend_lat_lon_content);
-        FriendLatLon.setText(getString(R.string.lat_lon_value,friendItem.getLatitude(),friendItem.getLongitude()));
-        Date curDate = new Date(System.currentTimeMillis());
-        Date lastDate = friendItem.getDate();
-        long diff = (curDate.getTime() - lastDate.getTime())/1000;
-        MyTextView4 FriendSecondsSince = (MyTextView4)findViewById(R.id.friend_seconds_since_content);
-        String time = Long.toString(diff);
-        String formatTime = "";
-        if(time.length() <= 3)
-            formatTime = time;
-        else {
-            int remainder = time.length() % 3;
-            int result = time.length() / 3;
-            if (0 == remainder) {
-                remainder = 3;
-                result -= 1;
+        if(friendItem.getGetLoc()) {
+            MyTextView4 FriendLatLon = (MyTextView4) findViewById(R.id.friend_lat_lon_content);
+            FriendLatLon.setText(getString(R.string.lat_lon_value, friendItem.getLatitude(), friendItem.getLongitude()));
+            Date curDate = new Date(System.currentTimeMillis());
+            Date lastDate = friendItem.getDate();
+            long diff = (curDate.getTime() - lastDate.getTime()) / 1000;
+            MyTextView4 FriendSecondsSince = (MyTextView4) findViewById(R.id.friend_seconds_since_content);
+            String time = Long.toString(diff);
+            String formatTime = "";
+            if (time.length() <= 3)
+                formatTime = time;
+            else {
+                int remainder = time.length() % 3;
+                int result = time.length() / 3;
+                if (0 == remainder) {
+                    remainder = 3;
+                    result -= 1;
+                }
+                formatTime += time.substring(0, remainder);
+                time = time.substring(remainder);
+                for (int i = 0; i < result; i++) {
+                    formatTime += "''" + time.substring(i * 3, i * 3 + 3);
+                }
             }
-            formatTime += time.substring(0,remainder);
-            time = time.substring(remainder);
-            for(int i = 0; i < result; i++){
-                formatTime += "''" + time.substring(i*3,i*3+3);
-            }
+            FriendSecondsSince.setText(formatTime);
+
+            final MyTextView4 FriendNearestAddress = (MyTextView4) findViewById(R.id.friend_nearest_address_content);
+            FriendNearestAddress.setText(R.string.loading);
+            FriendNearestAddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(FriendDetailActivity.this, FriendNearestAddress.getText().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            // 初始化搜索模块，注册事件监听
+            mSearch = GeoCoder.newInstance();
+            OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+                public void onGetGeoCodeResult(GeoCodeResult result) {
+                    if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                        //没有检索到结果
+                    }
+                    //获取地理编码结果
+                }
+
+                @Override
+                public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+                    if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                        //没有找到检索结果
+                        MyTextView4 FriendNearestAddress = (MyTextView4) findViewById(R.id.friend_nearest_address_content);
+                        FriendNearestAddress.setText(R.string.none_result);
+                    }
+                    //获取反向地理编码结果
+                    MyTextView4 FriendNearestAddress = (MyTextView4) findViewById(R.id.friend_nearest_address_content);
+                    FriendNearestAddress.setText(result.getAddress());
+                }
+            };
+            mSearch.setOnGetGeoCodeResultListener(listener);
+            mSearch.reverseGeoCode(new ReverseGeoCodeOption()
+                    .location(new LatLng(friendItem.getLatitude(), friendItem.getLongitude())));
         }
-        FriendSecondsSince.setText(formatTime);
-
-        final MyTextView4 FriendNearestAddress = (MyTextView4)findViewById(R.id.friend_nearest_address_content);
-        FriendNearestAddress.setText(R.string.loading);
-        FriendNearestAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(FriendDetailActivity.this, FriendNearestAddress.getText().toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-        // 初始化搜索模块，注册事件监听
-        mSearch = GeoCoder.newInstance();
-        OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
-            public void onGetGeoCodeResult(GeoCodeResult result) {
-                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                    //没有检索到结果
-                }
-                //获取地理编码结果
-            }
-
-            @Override
-            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
-                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                    //没有找到检索结果
-                    MyTextView4 FriendNearestAddress = (MyTextView4)findViewById(R.id.friend_nearest_address_content);
-                    FriendNearestAddress.setText(R.string.none_result);
-                }
-                //获取反向地理编码结果
-                MyTextView4 FriendNearestAddress = (MyTextView4)findViewById(R.id.friend_nearest_address_content);
-                FriendNearestAddress.setText(result.getAddress());
-            }
-        };
-        mSearch.setOnGetGeoCodeResultListener(listener);
-        mSearch.reverseGeoCode(new ReverseGeoCodeOption()
-            .location(new LatLng(friendItem.getLatitude(),friendItem.getLongitude())));
 
         MyTextView2 radarButton = (MyTextView2)findViewById(R.id.friend_detail_radar_button);
         radarButton.setOnClickListener(new View.OnClickListener() {

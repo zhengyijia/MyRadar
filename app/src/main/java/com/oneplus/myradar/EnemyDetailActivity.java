@@ -67,64 +67,66 @@ public class EnemyDetailActivity extends AppCompatActivity {
         EnemyNameEdit.setText(enemyItem.getName());
         MyTextView4 EnemyNumber = (MyTextView4)findViewById(R.id.enemy_number_content);
         EnemyNumber.setText(enemyItem.getPhoneNumber());
-        MyTextView4 EnemyLatLon = (MyTextView4)findViewById(R.id.enemy_lat_lon_content);
-        EnemyLatLon.setText(getString(R.string.lat_lon_value,enemyItem.getLatitude(),enemyItem.getLongitude()));
-        Date curDate = new Date(System.currentTimeMillis());
-        Date lastDate = enemyItem.getDate();
-        long diff = (curDate.getTime() - lastDate.getTime())/1000;
-        MyTextView4 EnemySecondsSince = (MyTextView4)findViewById(R.id.enemy_seconds_since_content);
-        String time = Long.toString(diff);
-        String formatTime = "";
-        if(time.length() <= 3)
-            formatTime = time;
-        else {
-            int remainder = time.length() % 3;
-            int result = time.length() / 3;
-            if (0 == remainder) {
-                remainder = 3;
-                result -= 1;
+        if(enemyItem.getGetLoc()) {
+            MyTextView4 EnemyLatLon = (MyTextView4) findViewById(R.id.enemy_lat_lon_content);
+            EnemyLatLon.setText(getString(R.string.lat_lon_value, enemyItem.getLatitude(), enemyItem.getLongitude()));
+            Date curDate = new Date(System.currentTimeMillis());
+            Date lastDate = enemyItem.getDate();
+            long diff = (curDate.getTime() - lastDate.getTime()) / 1000;
+            MyTextView4 EnemySecondsSince = (MyTextView4) findViewById(R.id.enemy_seconds_since_content);
+            String time = Long.toString(diff);
+            String formatTime = "";
+            if (time.length() <= 3)
+                formatTime = time;
+            else {
+                int remainder = time.length() % 3;
+                int result = time.length() / 3;
+                if (0 == remainder) {
+                    remainder = 3;
+                    result -= 1;
+                }
+                formatTime += time.substring(0, remainder);
+                time = time.substring(remainder);
+                for (int i = 0; i < result; i++) {
+                    formatTime += "''" + time.substring(i * 3, i * 3 + 3);
+                }
             }
-            formatTime += time.substring(0,remainder);
-            time = time.substring(remainder);
-            for(int i = 0; i < result; i++){
-                formatTime += "''" + time.substring(i*3,i*3+3);
-            }
+            EnemySecondsSince.setText(formatTime);
+
+            final MyTextView4 EnemyNearestAddress = (MyTextView4) findViewById(R.id.enemy_nearest_address_content);
+            EnemyNearestAddress.setText(R.string.loading);
+            EnemyNearestAddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(EnemyDetailActivity.this, EnemyNearestAddress.getText().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            // 初始化搜索模块，注册事件监听
+            mSearch = GeoCoder.newInstance();
+            OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
+                public void onGetGeoCodeResult(GeoCodeResult result) {
+                    if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                        //没有检索到结果
+                    }
+                    //获取地理编码结果
+                }
+
+                @Override
+                public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
+                    if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
+                        //没有找到检索结果
+                        MyTextView4 EnemyNearestAddress = (MyTextView4) findViewById(R.id.enemy_nearest_address_content);
+                        EnemyNearestAddress.setText(R.string.none_result);
+                    }
+                    //获取反向地理编码结果
+                    MyTextView4 EnemyNearestAddress = (MyTextView4) findViewById(R.id.enemy_nearest_address_content);
+                    EnemyNearestAddress.setText(result.getAddress());
+                }
+            };
+            mSearch.setOnGetGeoCodeResultListener(listener);
+            mSearch.reverseGeoCode(new ReverseGeoCodeOption()
+                    .location(new LatLng(enemyItem.getLatitude(), enemyItem.getLongitude())));
         }
-        EnemySecondsSince.setText(formatTime);
-
-        final MyTextView4 EnemyNearestAddress = (MyTextView4)findViewById(R.id.enemy_nearest_address_content);
-        EnemyNearestAddress.setText(R.string.loading);
-        EnemyNearestAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(EnemyDetailActivity.this, EnemyNearestAddress.getText().toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-        // 初始化搜索模块，注册事件监听
-        mSearch = GeoCoder.newInstance();
-        OnGetGeoCoderResultListener listener = new OnGetGeoCoderResultListener() {
-            public void onGetGeoCodeResult(GeoCodeResult result) {
-                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                    //没有检索到结果
-                }
-                //获取地理编码结果
-            }
-
-            @Override
-            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
-                if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                    //没有找到检索结果
-                    MyTextView4 EnemyNearestAddress = (MyTextView4)findViewById(R.id.enemy_nearest_address_content);
-                    EnemyNearestAddress.setText(R.string.none_result);
-                }
-                //获取反向地理编码结果
-                MyTextView4 EnemyNearestAddress = (MyTextView4)findViewById(R.id.enemy_nearest_address_content);
-                EnemyNearestAddress.setText(result.getAddress());
-            }
-        };
-        mSearch.setOnGetGeoCodeResultListener(listener);
-        mSearch.reverseGeoCode(new ReverseGeoCodeOption()
-                .location(new LatLng(enemyItem.getLatitude(),enemyItem.getLongitude())));
 
         MyTextView2 radarButton = (MyTextView2)findViewById(R.id.enemy_detail_radar_button);
         radarButton.setOnClickListener(new View.OnClickListener() {
