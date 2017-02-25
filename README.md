@@ -11,3 +11,12 @@
 * 启动和点击刷新按钮时的雷达扫描动画
 * 短信通信之间使用AES加密算法进行加密
 * 自动删除多余短信
+
+##应用截图
+
+<img src="screenshots/1.jpg" width="200" height="356" alt="雷达界面" />
+<img src="screenshots/2.jpg" width="200" height="356" alt="好友列表" />
+<img src="screenshots/3.jpg" width="200" height="356" alt="添加好友" /><br/>
+<img src="screenshots/4.jpg" width="200" height="356" alt="删除好友" />
+<img src="screenshots/5.jpg" width="200" height="356" alt="敌人列表" />
+<img src="screenshots/6.jpg" width="200" height="356" alt="详细信息" /><br/>
